@@ -409,13 +409,13 @@
 
     function renderAccounts() {
       const listEl = document.getElementById('acc-list');
-      listEl.innerHTML = '';
+      listEl.textContent = '';
       document.getElementById('acc-count').textContent = `${accounts.length}개 보관 중`;
 
       accounts.forEach((acc, idx) => {
         const card = document.createElement('div');
         card.className = 'p-3.5 bg-slate-50 hover:bg-indigo-50/50 border border-slate-200 rounded-xl flex justify-between items-center cursor-pointer transition';
-        card.innerHTML = `
+        card.innerHTML=`
           <div>
             <div class="flex items-center gap-2">
               <span class="font-bold text-slate-800 text-sm">${acc.alias}</span>
@@ -469,10 +469,10 @@
     }
 
     document.getElementById('save-btn').addEventListener('click', () => {
-      const alias = document.getElementById('acc-alias').value || '기본 계좌';
-      const bank = document.getElementById('acc-bank').value;
-      const holder = document.getElementById('acc-holder').value || '예금주';
-      const num = document.getElementById('acc-num').value.replace(/[^0-9]/g, '');
+      const alias = document.getElementById('acc-alias')?.value || '기본 계좌';
+      const bank = document.getElementById('acc-bank')?.value;
+      const holder = document.getElementById('acc-holder')?.value || '예금주';
+      const num = document.getElementById('acc-num')?.value.replace(/[^0-9]/g, '');
 
       if (!num) return;
       accounts.push({ alias, bank, holder, num });
@@ -482,8 +482,8 @@
     });
 
     document.getElementById('reset-btn').addEventListener('click', () => {
-      document.getElementById('acc-alias').value = '';
-      document.getElementById('acc-num').value = '';
+      { const _el = document.getElementById('acc-alias'); if (_el) _el.value = ''; }
+      { const _el = document.getElementById('acc-num'); if (_el) _el.value = ''; }
     });
 
     document.getElementById('copy-btn').addEventListener('click', () => {
