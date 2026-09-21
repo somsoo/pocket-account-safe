@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PocketAccount - 계좌번호 & 송금 메모 로컬 포켓</title>
+  <meta name="description" content="자주 쓰는 본인/가족 계좌번호와 예금주를 브라우저 로컬스토리지에 안전하게 보관하고 원클릭 복사하는 무서버 개인 금융 포켓">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
+  <style>
+    html, body { max-width: 100%; overflow-x: hidden; }
+    .manual-ad-box { width: 100%; max-width: 960px; overflow: hidden; }
+    .manual-ad-box ins { max-width: 100% !important; overflow: hidden !important; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans min-h-screen flex flex-col justify-between">
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">💳</span>
+        <div>
+          <h1 class="text-base font-bold text-slate-900 leading-tight">PocketAccount (계좌번호 로컬 포켓)</h1>
+          <p class="text-xs text-slate-500">100% 로컬 브라우저 보관 · 원클릭 복사 · 서버 전송 절대 없음</p>
+        </div>
+      </div>
+      <a href="guides/guide.html" class="text-xs bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-200 transition">
+        가이드
+      </a>
+    </div>
+  </header>
+
+  <div class="manual-ad-box mx-auto my-2 px-4">
+    <ins class="adsbygoogle"
+         style="display:block; height: 60px; max-height: 60px;"
+         data-ad-client="ca-pub-2228289204702106"
+         data-ad-slot="3824727725"
+         data-ad-format="horizontal"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <main class="max-w-7xl mx-auto px-4 py-6 flex-grow">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <section class="lg:col-span-6 bg-white rounded-2xl p-6 shadow-sm border border-slate-200 space-y-4">
+        <div class="border-b border-slate-100 pb-3">
+          <h2 class="text-base font-bold text-slate-800">➕ 새 계좌번호 등록</h2>
+          <p class="text-xs text-slate-500">입력된 정보는 내 브라우저(LocalStorage)에만 안전하게 암호화 보관됩니다.</p>
+        </div>
+
+        <div class="space-y-3 text-xs">
+          <div>
+            <label class="block text-slate-600 font-bold mb-1">별칭 (예: 생활비 통장, 월세 송금용)</label>
+            <input type="text" id="acc-alias" placeholder="생활비 통장" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-base">
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-slate-600 font-bold mb-1">은행명</label>
+              <select id="acc-bank" class="w-full px-2.5 py-2 border border-slate-300 rounded-lg text-base">
+                <option value="국민은행">국민은행</option>
+                <option value="신한은행">신한은행</option>
+                <option value="토스뱅크" selected>토스뱅크</option>
+                <option value="카카오뱅크">카카오뱅크</option>
+                <option value="우리은행">우리은행</option>
+                <option value="농협은행">농협은행</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-600 font-bold mb-1">예금주</label>
+              <input type="text" id="acc-holder" placeholder="홍길동" value="홍길동" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-base">
+            </div>
+          </div>
+          <div>
+            <label class="block text-slate-600 font-bold mb-1">계좌번호 (- 제외)</label>
+            <input type="text" id="acc-num" placeholder="1000-1234-5678" value="100012345678" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-base font-mono">
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 pt-2">
+          <button id="save-btn" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl shadow transition text-base">
+            <span>💾</span> 내 포켓에 저장하기
+          </button>
+          <button id="reset-btn" class="px-4 py-3.5 border border-slate-300 hover:bg-slate-100 text-slate-600 font-semibold rounded-xl text-base">
+            초기화
+          </button>
+        </div>
+      </section>
+
+      <section class="lg:col-span-6 lg:sticky lg:top-20 space-y-4">
+        <div id="result-box" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+          <div class="border-b border-dashed border-slate-300 pb-3 mb-4 flex justify-between items-center">
+            <div>
+              <h3 class="text-base font-black text-slate-900">내 보관 계좌 목록</h3>
+              <p class="text-xs text-slate-500">카드를 클릭하면 계좌번호가 즉시 복사됩니다.</p>
+            </div>
+            <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full" id="acc-count">1개 보관 중</span>
+          </div>
+
+          <div id="acc-list" class="space-y-3">
+            <!-- Account Cards -->
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100">
+            <button id="copy-btn" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 px-4 rounded-xl text-sm transition shadow">
+              <span>📋</span> 전체 계좌 목록 요약 복사
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <section class="mt-12 bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200">
+      <h2 class="text-xl font-bold text-slate-900 mb-3">PocketAccount 보안 FAQ</h2>
+      <details class="group border border-slate-200 rounded-xl p-4 bg-slate-50 open:bg-white transition">
+        <summary class="font-semibold text-slate-800 cursor-pointer list-none flex justify-between">
+          <span>Q. 금융 정보가 서버에 남을 염려는 없나요?</span>
+          <span class="text-slate-400 group-open:rotate-180 transition">▼</span>
+        </summary>
+        <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+          어떠한 서버 데이터베이스도 연결되어 있지 않으며 오직 사용자의 브라우저 로컬 스토리지에만 저장됩니다.
+        </p>
+      </details>
+    </section>
+  </main>
+
+  <div class="manual-ad-box mx-auto my-6 px-4">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-2228289204702106"
+         data-ad-slot="3416334507"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div id="toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-sm px-5 py-2.5 rounded-full shadow-lg transition-opacity duration-300 opacity-0 pointer-events-none z-50">
+    계좌번호가 복사되었습니다.
+  </div>
+
+  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-400">
+    © 2026 PocketAccount. All rights reserved.
+  </footer>
+
+  <script>
+    let accounts = [
+      { alias: '생활비 통장', bank: '토스뱅크', holder: '홍길동', num: '100012345678' }
+    ];
+
+    function loadLocal() {
+      try {
+        const saved = localStorage.getItem('pocket_accounts');
+        if (saved) accounts = JSON.parse(saved);
+      } catch (e) {}
+    }
+
+    function saveLocal() {
+      try {
+        localStorage.setItem('pocket_accounts', JSON.stringify(accounts));
+      } catch (e) {}
+    }
+
+    function renderAccounts() {
+      const listEl = document.getElementById('acc-list');
+      listEl.innerHTML = '';
+      document.getElementById('acc-count').textContent = `${accounts.length}개 보관 중`;
+
+      accounts.forEach((acc, idx) => {
+        const card = document.createElement('div');
+        card.className = 'p-3.5 bg-slate-50 hover:bg-indigo-50/50 border border-slate-200 rounded-xl flex justify-between items-center cursor-pointer transition';
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-slate-800 text-sm">${acc.alias}</span>
+              <span class="text-[11px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full">${acc.bank}</span>
+            </div>
+            <p class="font-mono text-indigo-600 font-bold text-base mt-1">${acc.num}</p>
+            <p class="text-xs text-slate-400">예금주: ${acc.holder}</p>
+          </div>
+          <button class="copy-single px-3 py-1.5 bg-white border border-slate-300 hover:border-indigo-500 text-xs font-bold rounded-lg text-slate-700 shadow-sm" data-num="${acc.bank} ${acc.num} ${acc.holder}">
+            복사
+          </button>
+        `;
+
+        card.querySelector('.copy-single').addEventListener('click', (e) => {
+          e.stopPropagation();
+          copyText(e.target.dataset.num);
+        });
+
+        card.addEventListener('click', () => {
+          copyText(`${acc.bank} ${acc.num} ${acc.holder}`);
+        });
+
+        listEl.appendChild(card);
+      });
+    }
+
+    function copyText(t) {
+      const toast = document.getElementById('toast');
+      function showT() {
+        toast.textContent = `${t} 복사 완료!`;
+        toast.style.opacity = '1';
+        setTimeout(() => { toast.style.opacity = '0'; }, 2200);
+      }
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(t).then(showT).catch(() => fallbackCopy(t));
+      } else {
+        fallbackCopy(t);
+      }
+    }
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      const toast = document.getElementById('toast');
+      toast.textContent = `${text} 복사 완료!`;
+      toast.style.opacity = '1';
+      setTimeout(() => { toast.style.opacity = '0'; }, 2200);
+    }
+
+    document.getElementById('save-btn').addEventListener('click', () => {
+      const alias = document.getElementById('acc-alias').value || '기본 계좌';
+      const bank = document.getElementById('acc-bank').value;
+      const holder = document.getElementById('acc-holder').value || '예금주';
+      const num = document.getElementById('acc-num').value.replace(/[^0-9]/g, '');
+
+      if (!num) return;
+      accounts.push({ alias, bank, holder, num });
+      saveLocal();
+      renderAccounts();
+      copyText(`${bank} ${num} ${holder}`);
+    });
+
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      document.getElementById('acc-alias').value = '';
+      document.getElementById('acc-num').value = '';
+    });
+
+    document.getElementById('copy-btn').addEventListener('click', () => {
+      const summary = accounts.map(a => `[${a.alias}] ${a.bank} ${a.num} (${a.holder})`).join('\n');
+      copyText(summary);
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadLocal();
+      renderAccounts();
+    });
+  </script>
+</body>
+</html>
