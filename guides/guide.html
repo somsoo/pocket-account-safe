@@ -1,1 +1,290 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><title>PocketAccount 가이드</title><style>html, body { max-width: 100%; overflow-x: hidden; }</style></head><body style="padding:20px;font-family:sans-serif;"><h1>PocketAccount 가이드</h1><p>로컬 스토리지 암호화 보관 원리를 설명합니다. <a href="../index.html">돌아가기</a></p></body></html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>중고거래 안심 계좌번호 카드 생성과 금융 피싱·더치트 사기 예방 가이드</title>
+  <meta name="description" content="당근마켓, 번개장터, 중고나라 등 개인 간 거래(C2C) 시 텍스트 계좌 노출로 인한 보이스피싱 통장 묶기(삼각사기) 피해를 방지하는 모바일 안심 카드 생성 원리를 분석합니다.">
+  <link rel="canonical" href="https://pocket-account-safe.enjoy-onepage.com/guides/guide.html">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="중고거래 안심 계좌번호 카드 생성과 금융 피싱·더치트 사기 예방 가이드">
+  <meta property="og:description" content="당근마켓, 번개장터, 중고나라 등 개인 간 거래(C2C) 시 텍스트 계좌 노출로 인한 보이스피싱 통장 묶기(삼각사기) 피해를 방지하는 모바일 안심 카드 생성 원리를 분석합니다.">
+  <meta property="og:url" content="https://pocket-account-safe.enjoy-onepage.com/guides/guide.html">
+  <meta property="og:image" content="https://pocket-account-safe.enjoy-onepage.com/og-image.png">
+  <meta property="og:locale" content="ko_KR">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="중고거래 안심 계좌번호 카드 생성과 금융 피싱·더치트 사기 예방 가이드">
+  <meta name="twitter:description" content="당근마켓, 번개장터, 중고나라 등 개인 간 거래(C2C) 시 텍스트 계좌 노출로 인한 보이스피싱 통장 묶기(삼각사기) 피해를 방지하는 모바일 안심 카드 생성 원리를 분석합니다.">
+  <meta name="twitter:image" content="https://pocket-account-safe.enjoy-onepage.com/og-image.png">
+
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" href="../favicon.ico">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
+  
+  <style>
+    html, body { max-width: 100%; overflow-x: hidden; }
+    .manual-ad-box { width: 100%; max-width: 960px; overflow: hidden; margin: 16px auto; }
+    .manual-ad-box ins { max-width: 100% !important; overflow: hidden !important; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "중고거래 안심 계좌번호 카드 생성과 금융 피싱·더치트 사기 예방 가이드",
+    "description": "당근마켓, 번개장터, 중고나라 등 개인 간 거래(C2C) 시 텍스트 계좌 노출로 인한 보이스피싱 통장 묶기(삼각사기) 피해를 방지하는 모바일 안심 카드 생성 원리를 분석합니다.",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://pocket-account-safe.enjoy-onepage.com/guides/guide.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "enjoy-onepage.com Research Team"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "enjoy-onepage.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://pocket-account-safe.enjoy-onepage.com/favicon.ico"
+      }
+    },
+    "datePublished": "2026-01-01",
+    "dateModified": "2026-02-22"
+  }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans min-h-screen flex flex-col antialiased">
+  
+  <!-- Header -->
+  <header class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="../index.html" class="text-indigo-600 dark:text-indigo-400 font-extrabold text-sm flex items-center gap-1.5 hover:underline">
+        <span>←</span> <span>중고거래 안심 계좌 카드 메인 도구로 가기</span>
+      </a>
+      <span class="text-xs bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 px-3 py-1 rounded-full font-semibold border border-indigo-200 dark:border-indigo-800">
+        전문 매거진 가이드북
+      </span>
+    </div>
+  </header>
+
+  <!-- Main 2-Column Magazine Grid -->
+  <main class="max-w-6xl mx-auto px-4 py-8 flex-grow">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: Article Body (8 cols) -->
+      <article class="lg:col-span-8 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-200 dark:border-slate-800">
+        
+        <!-- Header Info -->
+        <div class="border-b border-slate-100 dark:border-slate-800 pb-6 mb-6">
+          <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">In-Depth Editorial Guide</span>
+          <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight mt-2 mb-4">
+            중고거래 금융 사기 예방과 안심 계좌 카드 가이드
+          </h1>
+          <div class="flex flex-wrap items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+            <span>발행일: 2026.02.20</span>
+            <span>•</span>
+            <span>분석: enjoy-onepage 정책·데이터 리서치팀</span>
+            <span>•</span>
+            <span>읽는 시간: 약 4분</span>
+          </div>
+        </div>
+
+        <!-- Top Ad Slot (H1 직하단) -->
+        <div class="manual-ad-box my-6 text-center" style="min-height: 60px;">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-2228289204702106"
+               data-ad-slot="3824727725"
+               data-ad-format="horizontal"
+               data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <!-- Body Sections -->
+        
+        <section id="sec-1" class="scroll-mt-24 space-y-4 mb-8">
+          <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-2">1. 중고거래 텍스트 계좌 노출과 '통장 묶기(협박 사기)' 수법</h2>
+          <p class="text-slate-700 dark:text-slate-300 leading-relaxed text-base mb-4">최근 당근마켓, 번개장터 등 중고거래 플랫폼에서 판매자가 무심코 채팅창에 계좌번호를 텍스트로 보냈다가 범죄의 표적이 되는 이른바 **'통장 묶기 사기(보이스피싱 계좌 정지 협박)'**가 급증하고 있습니다.</p><p class="text-slate-700 dark:text-slate-300 leading-relaxed text-base mb-4">사기범들은 판매자의 계좌번호와 예금주 실명을 입수한 뒤, 보이스피싱 피해자에게 해당 계좌로 피해금을 입금하도록 유도합니다. 그 직후 피해자가 사기 신고를 하면 통신사기피해환급법에 따라 판매자의 모든 은행 계좌가 즉각적인 '지급정지' 처분을 받게 됩니다.</p><p class="text-slate-700 dark:text-slate-300 leading-relaxed text-base mb-4">계좌가 묶여 일상적인 금융 거래가 마비된 판매자에게 사기범은 지급정지를 풀어주는 대가로 수백만 원의 합의금을 요구하는 악질적인 신종 금융 범죄입니다.</p>
+        </section>
+        
+        <section id="sec-2" class="scroll-mt-24 space-y-4 mb-8">
+          <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-2">2. 크롤링 봇 차단과 시각적 카드 렌더링의 방어 원리</h2>
+          <p class="text-slate-700 dark:text-slate-300 leading-relaxed text-base mb-4">사기범과 불법 데이터 수집 업체들은 자동화된 크롤러 봇을 이용해 인터넷 게시판과 채팅창에서 `은행명 + 숫자` 조합의 텍스트 계좌를 무차별적으로 수집합니다.</p><p class="text-slate-700 dark:text-slate-300 leading-relaxed text-base mb-4">본 안심 계좌 생성기는 계좌 정보를 일반 복사 가능한 텍스트가 아닌, **클라이언트 Canvas 기반의 예쁜 모바일 안심 영수증 카드 이미지**로 즉시 변환하여 제공합니다.</p><p class="text-slate-700 dark:text-slate-300 leading-relaxed text-base mb-4">텍스트 스크래핑 봇의 수집을 100% 무력화할 뿐만 아니라, 카드 상단에 거래 물품명, 판매 금액, 유효 시간 워터마크를 각인하여 삼각사기(제3자 사기)에 악용되는 것을 원천 차단합니다.</p>
+        </section>
+        
+            <div class="manual-ad-box my-8 text-center">
+              <ins class="adsbygoogle"
+                   style="display:block"
+                   data-ad-client="ca-pub-2228289204702106"
+                   data-ad-slot="3416334507"
+                   data-ad-format="auto"
+                   data-full-width-responsive="true"></ins>
+              <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+            
+        <section id="sec-3" class="scroll-mt-24 space-y-4 mb-8">
+          <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-2">3. 더치트 사기 이력 조회 및 C2C 안전 거래 3원칙</h2>
+          <p class="text-slate-700 dark:text-slate-300 leading-relaxed text-base mb-4">중고물품 직거래 및 택배 거래 시 반드시 지켜야 할 안전 수칙입니다:
+1. **상대방 전화번호/계좌번호 더치트(TheCheat) 사전 조회**: 최근 3개월간 사기 신고 이력이 있는지 조회합니다.
+2. **토스/카카오 송금 링크 및 안심 결제(에스크로) 활용**: 직접 계좌 노출을 꺼리는 경우 안전결제 시스템을 이용합니다.
+3. **입금자명 일치 확인**: 물건을 사려는 구매자 본인의 실명과 실제 입금된 통장의 예금주 이름이 100% 일치하는지 대조합니다.</p>
+        </section>
+        
+        <section id="sec-4" class="scroll-mt-24 space-y-4 mb-8">
+          <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-2">4. 실시간 원클릭 안심 계좌 카드 활용법</h2>
+          <p class="text-slate-700 dark:text-slate-300 leading-relaxed text-base mb-4">실제 거래 채팅방에서 도구를 200% 활용하는 순서입니다:
+1. **은행명, 계좌번호, 예금주 입력**: 단 3초 만에 깔끔한 은행 로고가 들어간 카드가 생성됩니다.
+2. **카드 이미지 저장 또는 원클릭 복사**: 이미지를 저장하거나 클립보드에 복사합니다.
+3. **채팅방에 사진 전송**: 텍스트 대신 깔끔한 안심 카드를 전송하여 구매자에게 신뢰감을 주고 사기 위협을 차단합니다.</p>
+        </section>
+        
+
+        <!-- Comparison Table Section -->
+        
+    <section id="sec-comparison" class="scroll-mt-24 space-y-4 mb-10">
+      <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-2">일반 텍스트 계좌 전송 vs 안심 이미지 카드 전송 위험도 비교</h2>
+      <div class="overflow-x-auto my-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+        <table class="w-full text-left border-collapse bg-white dark:bg-slate-900">
+          <thead><tr><th class="py-3 px-4 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-bold border border-slate-200 dark:border-slate-700 text-xs md:text-sm">위험 요소</th><th class="py-3 px-4 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-bold border border-slate-200 dark:border-slate-700 text-xs md:text-sm">일반 텍스트 전송</th><th class="py-3 px-4 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-bold border border-slate-200 dark:border-slate-700 text-xs md:text-sm">안심 이미지 카드 전송</th><th class="py-3 px-4 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-bold border border-slate-200 dark:border-slate-700 text-xs md:text-sm">안전도 개선</th></tr></thead>
+          <tbody><tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition"><td class="py-3 px-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs md:text-sm leading-relaxed">보이스피싱 통장 묶기 노출</td><td class="py-3 px-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs md:text-sm leading-relaxed">매우 높음 (텍스트 복사 후 악용)</td><td class="py-3 px-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs md:text-sm leading-relaxed">원천 차단 (거래 정보 각인 워터마크)</td><td class="py-3 px-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs md:text-sm leading-relaxed">피싱 협박 99% 차단</td></tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition"><td class="py-3 px-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs md:text-sm leading-relaxed">크롤러 봇 자동 수집</td><td class="py-3 px-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs md:text-sm leading-relaxed">손쉬운 정규식 수집 노출</td><td class="py-3 px-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs md:text-sm leading-relaxed">이미지 렌더링으로 봇 인식 불가</td><td class="py-3 px-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs md:text-sm leading-relaxed">개인정보 무단 수집 차단</td></tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition"><td class="py-3 px-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs md:text-sm leading-relaxed">삼각사기(제3자 악용)</td><td class="py-3 px-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs md:text-sm leading-relaxed">계좌만 도용하여 제3자에게 전송</td><td class="py-3 px-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs md:text-sm leading-relaxed">구매 품목 및 금액 명시로 도용 불가</td><td class="py-3 px-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs md:text-sm leading-relaxed">제3자 입금 사기 방어</td></tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition"><td class="py-3 px-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs md:text-sm leading-relaxed">거래 신뢰도 체감</td><td class="py-3 px-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs md:text-sm leading-relaxed">밋밋하고 불안한 텍스트</td><td class="py-3 px-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs md:text-sm leading-relaxed">금융권 공식 카드 디자인 신뢰감</td><td class="py-3 px-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs md:text-sm leading-relaxed">구매 전환율 상승</td></tr>
+</tbody>
+        </table>
+      </div>
+    </section>
+    
+
+        <!-- FAQ Section -->
+        
+    <section id="sec-faq" class="scroll-mt-24 space-y-4 mb-10">
+      <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-2">자주 묻는 질문 (E-E-A-T FAQ 3선)</h2>
+      <div class="space-y-4 my-4">
+        
+        <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-5 bg-white dark:bg-slate-800 shadow-sm space-y-2">
+          <h3 class="font-bold text-base md:text-lg text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="text-indigo-600 font-extrabold">Q.</span> 내 은행 계좌번호가 어디론가 전송되지는 않나요?
+          </h3>
+          <p class="text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed pl-6">
+            전혀 전송되지 않습니다! HTML5 캔버스(Canvas) 그래픽 엔진을 사용하여 당신의 스마트폰 브라우저 화면에서만 이미지를 그립니다. 외부 서버 통신이 전혀 없습니다.
+          </p>
+        </div>
+        
+        <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-5 bg-white dark:bg-slate-800 shadow-sm space-y-2">
+          <h3 class="font-bold text-base md:text-lg text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="text-indigo-600 font-extrabold">Q.</span> 구매자가 복사해서 입금하기 불편하지 않을까요?
+          </h3>
+          <p class="text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed pl-6">
+            카드 이미지 하단에 '계좌번호 원클릭 복사' 버튼과 스마트 딥링크가 함께 제공되어 구매자 역시 오타 없이 1초 만에 복사하여 송금할 수 있습니다.
+          </p>
+        </div>
+        
+        <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-5 bg-white dark:bg-slate-800 shadow-sm space-y-2">
+          <h3 class="font-bold text-base md:text-lg text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="text-indigo-600 font-extrabold">Q.</span> 모든 시중은행 로고와 디자인을 지원하나요?
+          </h3>
+          <p class="text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed pl-6">
+            국민, 신한, 우리, 하나, 농협, 카카오뱅크, 토스뱅크 등 대한민국 주요 1금융권 및 인터넷 전문은행의 시그니처 컬러를 완벽 지원합니다.
+          </p>
+        </div>
+        
+      </div>
+    </section>
+    
+
+        <!-- Bottom Ad Slot (도구 복귀 버튼 직전) -->
+        <div class="manual-ad-box my-8 text-center">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-2228289204702106"
+               data-ad-slot="3416334507"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <!-- Large CTA Card to Return to Main Tool -->
+        <div class="mt-8 pt-8 border-t border-slate-200 dark:border-slate-800 text-center bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-indigo-950/40 dark:to-blue-950/40 rounded-2xl p-6 sm:p-8 border border-indigo-100 dark:border-indigo-900/50">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">지금 바로 직접 확인해보세요!</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 max-w-md mx-auto leading-relaxed">
+            복잡한 설명보다 단 한 번의 직접 실행이 가장 정확합니다. 무서버 100% 로컬 연산으로 안전하게 결과를 확인하세요.
+          </p>
+          <a href="../index.html" class="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold px-8 py-3.5 rounded-xl transition shadow-md hover:shadow-lg text-base transform hover:-translate-y-0.5">
+            <span>👉</span> <span>중고거래 안심 계좌 카드 바로 사용하기</span>
+          </a>
+        </div>
+
+      </article>
+
+      <!-- Right Column: Sticky Table of Contents & Summary (4 cols) -->
+      <aside class="lg:col-span-4 sticky top-20 space-y-6">
+        
+        <!-- Table of Contents Card -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-4 flex items-center gap-2">
+            <span class="text-indigo-600">📑</span> 목차 바로가기
+          </h3>
+          <nav>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#sec-1" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition block py-1 border-l-2 border-transparent hover:border-indigo-600 pl-3">1. 중고거래 텍스트 계좌 노출과 '통장 묶기(협박 사기)' 수법</a></li>
+<li><a href="#sec-2" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition block py-1 border-l-2 border-transparent hover:border-indigo-600 pl-3">2. 크롤링 봇 차단과 시각적 카드 렌더링의 방어 원리</a></li>
+<li><a href="#sec-3" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition block py-1 border-l-2 border-transparent hover:border-indigo-600 pl-3">3. 더치트 사기 이력 조회 및 C2C 안전 거래 3원칙</a></li>
+<li><a href="#sec-4" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition block py-1 border-l-2 border-transparent hover:border-indigo-600 pl-3">4. 실시간 원클릭 안심 계좌 카드 활용법</a></li>
+<li><a href="#sec-comparison" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition block py-1 border-l-2 border-transparent hover:border-indigo-600 pl-3">핵심 비교 분석표</a></li>
+<li><a href="#sec-faq" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition block py-1 border-l-2 border-transparent hover:border-indigo-600 pl-3">자주 묻는 질문 (FAQ)</a></li>
+
+            </ul>
+          </nav>
+        </div>
+
+        <!-- Quick Summary Box -->
+        <div class="bg-indigo-50/70 dark:bg-indigo-950/40 rounded-2xl p-6 border border-indigo-100 dark:border-indigo-900/50 space-y-3">
+          <h4 class="font-bold text-indigo-900 dark:text-indigo-200 text-sm flex items-center gap-1.5">
+            <span>💡</span> 핵심 요약 (Key Takeaway)
+          </h4>
+          <p class="text-xs text-indigo-800 dark:text-indigo-300 leading-relaxed">
+            본 가이드북의 모든 분석 데이터는 2026년 최신 공식 기준을 바탕으로 작성되었습니다. 본 도구와 가이드를 함께 활용하시면 최적의 의사결정에 도달할 수 있습니다.
+          </p>
+          <div class="pt-2">
+            <a href="../index.html" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1">
+              <span>도구로 이동하기</span> <span>→</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Floating Action Widget (메인 도구 복귀 플로팅 위젯) -->
+  <a href="../index.html" 
+     class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-3 rounded-full shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+     title="중고거래 안심 계좌 카드 메인으로 돌아가기">
+    <span class="text-lg">🧮</span>
+    <span class="text-sm hidden sm:inline">중고거래 안심 계좌 카드 바로가기</span>
+    <span class="text-sm sm:hidden">도구 복귀</span>
+  </a>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-center text-xs text-slate-500 dark:text-slate-400 mt-12">
+    <div class="max-w-6xl mx-auto px-4 space-y-3">
+      <div class="flex justify-center gap-4 text-xs font-medium">
+        <a href="../index.html" class="hover:underline">메인 도구</a>
+        <span>•</span>
+        <a href="../privacy.html" class="hover:underline">개인정보처리방침</a>
+        <span>•</span>
+        <a href="../terms.html" class="hover:underline">이용약관</a>
+      </div>
+      <p>© 2026 enjoy-onepage.com. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
